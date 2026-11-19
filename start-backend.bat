@@ -3,8 +3,8 @@ echo Starting Northwind Management System Backend (Spring Boot)...
 cd backend
 
 if exist target\northwind-management-system-1.0.0.jar (
-    echo Running packaged JAR...
-    java -jar target\northwind-management-system-1.0.0.jar
+    echo Running packaged JAR with fast-tier startup...
+    java -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -jar target\northwind-management-system-1.0.0.jar
 ) else (
     where mvn >nul 2>nul
     if %ERRORLEVEL% equ 0 (
