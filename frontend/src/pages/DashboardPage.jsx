@@ -96,26 +96,26 @@ export default function DashboardPage({
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Overview Stat Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         {statCards.map((card, idx) => {
           const Icon = card.icon;
           return (
             <div
               key={idx}
               onClick={card.onClick}
-              className={`bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm transition-all duration-150 ${
-                card.onClick ? 'cursor-pointer hover:shadow-md hover:border-slate-300' : ''
+              className={`bg-white rounded-xl sm:rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm transition-all duration-150 ${
+                card.onClick ? 'cursor-pointer hover:shadow-md hover:border-slate-300 active:scale-[0.98]' : ''
               }`}
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{card.title}</p>
-                  <p className="text-2xl font-bold text-slate-800 mt-1">{card.value}</p>
+              <div className="flex items-start sm:items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">{card.title}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-slate-800 mt-1 truncate">{card.value}</p>
                 </div>
-                <div className={`p-3 rounded-2xl ${card.bgColor} ${card.textColor}`}>
-                  <Icon className="w-6 h-6" />
+                <div className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl shrink-0 ${card.bgColor} ${card.textColor}`}>
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               </div>
             </div>
@@ -124,80 +124,82 @@ export default function DashboardPage({
       </div>
 
       {/* Two Column Section: Recent Orders & Inventory Alerts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Recent Orders (2 Columns) */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 space-y-4">
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-slate-800 text-lg">Recent Customer Orders</h3>
-              <p className="text-xs text-slate-500">Latest purchase orders and shipping milestones</p>
+              <h3 className="font-bold text-slate-800 text-base sm:text-lg">Recent Customer Orders</h3>
+              <p className="text-xs text-slate-500 hidden sm:block">Latest purchase orders and shipping milestones</p>
             </div>
             <button
               onClick={() => setCurrentPage('orders')}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 group"
+              className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 group shrink-0"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-slate-100 text-slate-400 font-semibold text-xs">
-                  <th className="pb-3">Order ID</th>
-                  <th className="pb-3">Customer</th>
-                  <th className="pb-3">Date</th>
-                  <th className="pb-3">Status</th>
-                  <th className="pb-3 text-right">Total</th>
-                  <th className="pb-3 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-600">
-                {recentOrders && recentOrders.length > 0 ? (
-                  recentOrders.slice(0, 5).map((order) => (
-                    <tr key={order.orderId} className="hover:bg-slate-50/50">
-                      <td className="py-3 font-semibold text-slate-800">#{order.orderId}</td>
-                      <td className="py-3 font-medium text-slate-800">{order.customerName || 'N/A'}</td>
-                      <td className="py-3 text-xs text-slate-500">
-                        {order.orderDate ? new Date(order.orderDate).toLocaleDateString() : 'N/A'}
-                      </td>
-                      <td className="py-3">
-                        <Badge variant={order.deliveryStatus ? order.deliveryStatus.toLowerCase() : 'default'}>
-                          {order.deliveryStatus}
-                        </Badge>
-                      </td>
-                      <td className="py-3 text-right font-semibold text-slate-800">
-                        ${order.grandTotal ? Number(order.grandTotal).toFixed(2) : '0.00'}
-                      </td>
-                      <td className="py-3 text-right">
-                        <button
-                          onClick={() => onViewOrder && onViewOrder(order)}
-                          className="text-xs font-semibold text-blue-600 hover:underline"
-                        >
-                          Details
-                        </button>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <div className="min-w-[480px] px-4 sm:px-0">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-slate-100 text-slate-400 font-semibold text-xs">
+                    <th className="pb-3">Order ID</th>
+                    <th className="pb-3">Customer</th>
+                    <th className="pb-3 hidden sm:table-cell">Date</th>
+                    <th className="pb-3">Status</th>
+                    <th className="pb-3 text-right">Total</th>
+                    <th className="pb-3 text-right hidden sm:table-cell">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-600">
+                  {recentOrders && recentOrders.length > 0 ? (
+                    recentOrders.slice(0, 5).map((order) => (
+                      <tr key={order.orderId} className="hover:bg-slate-50/50">
+                        <td className="py-3 font-semibold text-slate-800">#{order.orderId}</td>
+                        <td className="py-3 font-medium text-slate-800 max-w-[120px] truncate">{order.customerName || 'N/A'}</td>
+                        <td className="py-3 text-xs text-slate-500 hidden sm:table-cell">
+                          {order.orderDate ? new Date(order.orderDate).toLocaleDateString() : 'N/A'}
+                        </td>
+                        <td className="py-3">
+                          <Badge variant={order.deliveryStatus ? order.deliveryStatus.toLowerCase() : 'default'}>
+                            {order.deliveryStatus}
+                          </Badge>
+                        </td>
+                        <td className="py-3 text-right font-semibold text-slate-800">
+                          ${order.grandTotal ? Number(order.grandTotal).toFixed(2) : '0.00'}
+                        </td>
+                        <td className="py-3 text-right hidden sm:table-cell">
+                          <button
+                            onClick={() => onViewOrder && onViewOrder(order)}
+                            className="text-xs font-semibold text-blue-600 hover:underline"
+                          >
+                            Details
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="py-8 text-center text-slate-400 text-sm">
+                        No recent orders found.
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="6" className="py-8 text-center text-slate-400 text-sm">
-                      No recent orders found.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         {/* Low Stock Alerts (1 Column) */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 space-y-4">
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-slate-800 text-lg">Inventory Alerts</h3>
-              <p className="text-xs text-slate-500">Products at or below reorder level</p>
+              <h3 className="font-bold text-slate-800 text-base sm:text-lg">Inventory Alerts</h3>
+              <p className="text-xs text-slate-500 hidden sm:block">Products at or below reorder level</p>
             </div>
             <button
               onClick={() => setCurrentPage('products')}
@@ -208,7 +210,7 @@ export default function DashboardPage({
             </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {lowStockProducts && lowStockProducts.length > 0 ? (
               lowStockProducts.slice(0, 6).map((prod) => (
                 <div
@@ -223,14 +225,14 @@ export default function DashboardPage({
                   </div>
                   <button
                     onClick={() => onQuickRestock && onQuickRestock(prod)}
-                    className="shrink-0 px-2.5 py-1 text-xs font-semibold text-blue-600 hover:bg-blue-50 border border-blue-200 rounded-lg transition-colors"
+                    className="shrink-0 px-2.5 py-1.5 text-xs font-semibold text-blue-600 hover:bg-blue-50 border border-blue-200 rounded-lg transition-colors touch-manipulation"
                   >
                     Restock
                   </button>
                 </div>
               ))
             ) : (
-              <div className="py-12 text-center text-slate-400 text-sm">
+              <div className="py-10 text-center text-slate-400 text-sm">
                 All inventory levels are healthy!
               </div>
             )}

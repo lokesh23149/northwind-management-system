@@ -128,15 +128,16 @@ export default function EmployeesPage({
           <Spinner size="lg" className="py-20" />
         ) : (
           <div className="overflow-x-auto">
+            <div className="min-w-[580px]">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold text-xs uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Employee</th>
-                  <th className="py-3.5 px-6">Role / Title</th>
-                  <th className="py-3.5 px-6">Contact</th>
-                  <th className="py-3.5 px-6">Location</th>
-                  <th className="py-3.5 px-6">Reports To</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-3.5 px-4 sm:px-6">Employee</th>
+                  <th className="py-3.5 px-4 sm:px-6">Role / Title</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden md:table-cell">Contact</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden sm:table-cell">Location</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden lg:table-cell">Reports To</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -153,13 +154,14 @@ export default function EmployeesPage({
                               {emp.titleOfCourtesy} {emp.firstname} {emp.lastname}
                             </div>
                             <div className="text-xs text-slate-400">ID: #{emp.employeeId}</div>
+                            <div className="text-xs text-slate-500 sm:hidden mt-0.5">{emp.email || ''}</div>
                           </div>
                         </div>
                       </td>
                       <td className="py-4 px-6">
                         <span className="font-medium text-slate-700">{emp.title || 'Staff'}</span>
                       </td>
-                      <td className="py-4 px-6 space-y-1">
+                      <td className="py-4 px-4 sm:px-6 space-y-1 hidden md:table-cell">
                         {emp.email && (
                           <div className="flex items-center gap-1.5 text-xs text-slate-500">
                             <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -173,13 +175,13 @@ export default function EmployeesPage({
                           </div>
                         )}
                       </td>
-                      <td className="py-4 px-6 text-xs text-slate-500">
+                      <td className="py-4 px-4 sm:px-6 text-xs text-slate-500 hidden sm:table-cell">
                         <div className="flex items-center gap-1.5">
                           <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                           <span>{[emp.city, emp.country].filter(Boolean).join(', ') || 'N/A'}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-xs text-slate-600 font-medium">
+                      <td className="py-4 px-4 sm:px-6 text-xs text-slate-600 font-medium hidden lg:table-cell">
                         {emp.managerName || (emp.mgrId ? `Manager #${emp.mgrId}` : '—')}
                       </td>
                       <td className="py-4 px-6 text-right">
@@ -211,6 +213,7 @@ export default function EmployeesPage({
                 )}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </div>

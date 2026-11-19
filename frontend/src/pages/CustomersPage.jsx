@@ -109,22 +109,23 @@ export default function CustomersPage({
         {loading ? (
           <Spinner size="lg" className="py-20" />
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-px">
+            <div className="min-w-[560px]">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold text-xs uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Company</th>
-                  <th className="py-3.5 px-6">Primary Contact</th>
-                  <th className="py-3.5 px-6">Location</th>
-                  <th className="py-3.5 px-6">Contact Details</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-3.5 px-4 sm:px-6">Company</th>
+                  <th className="py-3.5 px-4 sm:px-6">Primary Contact</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden sm:table-cell">Location</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden md:table-cell">Contact Details</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
                 {customers && customers.length > 0 ? (
                   customers.map((cust) => (
                     <tr key={cust.custId} className="hover:bg-slate-50/60 transition-colors">
-                      <td className="py-4 px-6">
+                      <td className="py-4 px-4 sm:px-6">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center text-xs shrink-0 border border-indigo-100">
                             <Building className="w-4 h-4" />
@@ -135,17 +136,21 @@ export default function CustomersPage({
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-6">
+                      <td className="py-4 px-4 sm:px-6">
                         <div className="font-medium text-slate-800">{cust.contactName || 'N/A'}</div>
                         <div className="text-xs text-slate-500">{cust.contactTitle || 'Representative'}</div>
+                        <div className="text-xs text-slate-400 sm:hidden mt-0.5 flex items-center gap-1">
+                          <MapPin className="w-3 h-3 shrink-0" />
+                          <span>{[cust.city, cust.country].filter(Boolean).join(', ') || 'N/A'}</span>
+                        </div>
                       </td>
-                      <td className="py-4 px-6 text-xs text-slate-500">
+                      <td className="py-4 px-4 sm:px-6 text-xs text-slate-500 hidden sm:table-cell">
                         <div className="flex items-center gap-1.5">
                           <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                           <span>{[cust.city, cust.country].filter(Boolean).join(', ') || 'N/A'}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 space-y-1">
+                      <td className="py-4 px-4 sm:px-6 space-y-1 hidden md:table-cell">
                         {cust.email && (
                           <div className="flex items-center gap-1.5 text-xs text-slate-500">
                             <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -159,7 +164,7 @@ export default function CustomersPage({
                           </div>
                         )}
                       </td>
-                      <td className="py-4 px-6 text-right">
+                      <td className="py-4 px-4 sm:px-6 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleOpenEdit(cust)}
@@ -188,6 +193,7 @@ export default function CustomersPage({
                 )}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </div>

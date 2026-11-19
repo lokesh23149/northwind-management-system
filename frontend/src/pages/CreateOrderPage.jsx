@@ -162,7 +162,7 @@ export default function CreateOrderPage({
   return (
     <div className="space-y-6">
       {/* Top Bar */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <button
           onClick={onBack}
           className="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm"
@@ -183,7 +183,7 @@ export default function CreateOrderPage({
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Step 1: Customer & Logistics Section */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 space-y-4">
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-6 space-y-4">
           <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
             <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">1</span>
             Customer & Logistics
@@ -310,7 +310,7 @@ export default function CreateOrderPage({
         </div>
 
         {/* Step 2: Multi-Product Purchase Cart */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 space-y-4">
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
             <h4 className="text-base font-bold text-slate-800 flex items-center gap-2">
               <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">2</span>
@@ -434,12 +434,12 @@ export default function CreateOrderPage({
 
           {/* Pricing Totals & Freight */}
           <div className="pt-4 border-t border-slate-100 flex flex-col items-end gap-2 text-sm">
-            <div className="flex justify-between w-72 text-slate-500">
+            <div className="flex justify-between w-full sm:w-72 text-slate-500">
               <span>Items Subtotal:</span>
               <span className="font-semibold text-slate-800">${subtotal.toFixed(2)}</span>
             </div>
 
-            <div className="flex items-center justify-between w-72 text-slate-500">
+            <div className="flex items-center justify-between w-full sm:w-72 text-slate-500">
               <span className="flex items-center gap-1">Freight Fee ($):</span>
               <input
                 type="number"
@@ -451,7 +451,7 @@ export default function CreateOrderPage({
               />
             </div>
 
-            <div className="flex justify-between w-72 border-t border-slate-200 pt-2 text-base font-bold text-slate-900">
+            <div className="flex justify-between w-full sm:w-72 border-t border-slate-200 pt-2 text-base font-bold text-slate-900">
               <span>Order Grand Total:</span>
               <span className="text-blue-600 text-lg">${grandTotal.toFixed(2)}</span>
             </div>
@@ -459,18 +459,18 @@ export default function CreateOrderPage({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-3">
           <button
             type="button"
             onClick={onBack}
-            className="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-colors"
+            className="w-full sm:w-auto px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-colors text-center"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting || items.every((i) => !i.productId)}
-            className="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-xl shadow-md shadow-blue-500/20 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-xl shadow-md shadow-blue-500/20 transition-all"
           >
             <ShoppingCart className="w-4 h-4" />
             <span>{submitting ? 'Placing Order...' : 'Confirm & Place Order'}</span>

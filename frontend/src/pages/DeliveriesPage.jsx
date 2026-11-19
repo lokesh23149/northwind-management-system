@@ -107,16 +107,17 @@ export default function DeliveriesPage({
           <Spinner size="lg" className="py-20" />
         ) : (
           <div className="overflow-x-auto">
+            <div className="min-w-[640px]">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold text-xs uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Order ID</th>
-                  <th className="py-3.5 px-6">Recipient & Address</th>
-                  <th className="py-3.5 px-6">Carrier</th>
-                  <th className="py-3.5 px-6">Milestones</th>
-                  <th className="py-3.5 px-6 text-center">Status</th>
-                  <th className="py-3.5 px-6 text-right">Quick Transition</th>
-                  <th className="py-3.5 px-6 text-right">Manage</th>
+                  <th className="py-3.5 px-4 sm:px-6">Order ID</th>
+                  <th className="py-3.5 px-4 sm:px-6">Recipient & Address</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden md:table-cell">Carrier</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden sm:table-cell">Milestones</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-center">Status</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Quick Transition</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Manage</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -138,14 +139,15 @@ export default function DeliveriesPage({
                             <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
                             <span>{[del.shipAddress, del.shipCity, del.shipCountry].filter(Boolean).join(', ')}</span>
                           </div>
+                          <div className="text-xs text-blue-600 font-medium md:hidden mt-0.5">{del.shipperName || ''}</div>
                         </td>
-                        <td className="py-4 px-6 text-xs font-medium text-slate-700">
+                        <td className="py-4 px-4 sm:px-6 text-xs font-medium text-slate-700 hidden md:table-cell">
                           <div className="flex items-center gap-1.5">
                             <Truck className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                             <span>{del.shipperName || `Carrier #${del.shipperId}`}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-6 text-xs text-slate-500 space-y-1">
+                        <td className="py-4 px-4 sm:px-6 text-xs text-slate-500 space-y-1 hidden sm:table-cell">
                           <div className="flex items-center gap-1">
                             <span className="text-slate-400">Order:</span>
                             <span>{del.orderDate ? new Date(del.orderDate).toLocaleDateString() : 'N/A'}</span>
@@ -159,10 +161,10 @@ export default function DeliveriesPage({
                             <div className="text-slate-400 italic">Not yet dispatched</div>
                           )}
                         </td>
-                        <td className="py-4 px-6 text-center">
+                        <td className="py-4 px-4 sm:px-6 text-center">
                           <Badge variant={status.toLowerCase()}>{status}</Badge>
                         </td>
-                        <td className="py-4 px-6 text-right">
+                        <td className="py-4 px-4 sm:px-6 text-right">
                           <div className="flex items-center justify-end gap-1.5">
                             {isPending && (
                               <button
@@ -190,7 +192,7 @@ export default function DeliveriesPage({
                             )}
                           </div>
                         </td>
-                        <td className="py-4 px-6 text-right">
+                        <td className="py-4 px-4 sm:px-6 text-right">
                           <button
                             onClick={() => handleOpenEdit(del)}
                             title="Edit Shipping Details"
@@ -211,6 +213,7 @@ export default function DeliveriesPage({
                 )}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </div>

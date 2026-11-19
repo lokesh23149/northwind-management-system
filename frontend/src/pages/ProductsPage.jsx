@@ -142,7 +142,7 @@ export default function ProductsPage({
           {/* Low Stock Filter Button */}
           <button
             onClick={() => setLowStockOnly(!lowStockOnly)}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl border transition-all ${
+            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl border whitespace-nowrap transition-all ${
               lowStockOnly
                 ? 'bg-rose-50 text-rose-700 border-rose-300 shadow-sm'
                 : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
@@ -168,16 +168,17 @@ export default function ProductsPage({
           <Spinner size="lg" className="py-20" />
         ) : (
           <div className="overflow-x-auto">
+            <div className="min-w-[620px]">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold text-xs uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Product</th>
-                  <th className="py-3.5 px-6">Category</th>
-                  <th className="py-3.5 px-6 text-right">Price</th>
-                  <th className="py-3.5 px-6 text-center">Stock Status</th>
-                  <th className="py-3.5 px-6 text-center">Reorder Level</th>
-                  <th className="py-3.5 px-6 text-center">State</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-3.5 px-4 sm:px-6">Product</th>
+                  <th className="py-3.5 px-4 sm:px-6 hidden sm:table-cell">Category</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Price</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-center">Stock Status</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-center hidden md:table-cell">Reorder Level</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-center">State</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -191,12 +192,13 @@ export default function ProductsPage({
                         <td className="py-4 px-6">
                           <div>
                             <div className="font-semibold text-slate-800">{prod.productName}</div>
+                            <div className="sm:hidden mt-1"><span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700">{prod.categoryName || 'General'}</span></div>
                             <div className="text-xs text-slate-400">
                               ID: #{prod.productId} {prod.quantityPerUnit ? `• ${prod.quantityPerUnit}` : ''}
                             </div>
                           </div>
                         </td>
-                        <td className="py-4 px-6">
+                        <td className="py-4 px-4 sm:px-6 hidden sm:table-cell">
                           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 text-slate-700">
                             {prod.categoryName || 'General'}
                           </span>
@@ -218,7 +220,7 @@ export default function ProductsPage({
                             </button>
                           </div>
                         </td>
-                        <td className="py-4 px-6 text-center text-xs text-slate-500 font-mono">
+                        <td className="py-4 px-4 sm:px-6 text-center text-xs text-slate-500 font-mono hidden md:table-cell">
                           {prod.reorderLevel}
                         </td>
                         <td className="py-4 px-6 text-center">
@@ -260,6 +262,7 @@ export default function ProductsPage({
                 )}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </div>
