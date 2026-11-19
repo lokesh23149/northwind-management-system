@@ -27,7 +27,7 @@ public interface SalesOrderRepository extends JpaRepository<SalesOrder, Integer>
            "(:search IS NULL OR LOWER(o.shipName) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
            "LOWER(o.shipCity) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
            "LOWER(o.shipCountry) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
-           "CAST(o.orderId AS string) LIKE CONCAT('%', :search, '%')) " +
+           "CONCAT(o.orderId, '') LIKE CONCAT('%', :search, '%')) " +
            "ORDER BY o.orderDate DESC")
     List<SalesOrder> searchOrders(@Param("status") DeliveryStatus status, @Param("search") String search);
 

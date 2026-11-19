@@ -1,100 +1,76 @@
-﻿USE Northwind;
+USE Northwind;
 SET FOREIGN_KEY_CHECKS=0;
 
--- Employee (3 rows)
-INSERT INTO Employee(employeeid, lastname, firstname, title, titleofcourtesy, birthdate, hiredate, address, city, region, postalcode, country, phone, mgrid)
-  VALUES(1, N'Davis', N'Sara', N'CEO', N'Ms.', '1958-12-08 00:00:00.000', '2002-05-01 00:00:00.000', N'7890 - 20th Ave. E., Apt. 2A', N'Seattle', N'WA', N'10003', N'USA', N'(206) 555-0101', NULL);
-INSERT INTO Employee(employeeid, lastname, firstname, title, titleofcourtesy, birthdate, hiredate, address, city, region, postalcode, country, phone, mgrid)
-  VALUES(2, N'Funk', N'Don', N'Vice President, Sales', N'Dr.', '1962-02-19 00:00:00.000', '2002-08-14 00:00:00.000', N'9012 W. Capital Way', N'Tacoma', N'WA', N'10001', N'USA', N'(206) 555-0100', 1);
-INSERT INTO Employee(employeeid, lastname, firstname, title, titleofcourtesy, birthdate, hiredate, address, city, region, postalcode, country, phone, mgrid)
-  VALUES(3, N'Lew', N'Judy', N'Sales Manager', N'Ms.', '1973-08-30 00:00:00.000', '2002-04-01 00:00:00.000', N'2345 Moss Bay Blvd.', N'Kirkland', N'WA', N'10007', N'USA', N'(206) 555-0103', 2);
+-- 1. Employee (3 rows)
+INSERT INTO Employee (employeeId, lastname, firstname, title, titleOfCourtesy, birthDate, hireDate, address, city, region, postalCode, country, phone, mgrId)
+VALUES
+  (1, 'Davis',  'Sara', 'CEO',                   'Ms.', '1958-12-08', '2002-05-01', '7890 20th Ave E', 'Seattle',  'WA', '10003', 'USA', '(206) 555-0101', NULL),
+  (2, 'Funk',   'Don',  'Vice President, Sales', 'Dr.', '1962-02-19', '2002-08-14', '9012 W Capital Way', 'Tacoma','WA', '10001', 'USA', '(206) 555-0100', 1),
+  (3, 'Lew',    'Judy', 'Sales Manager',         'Ms.', '1973-08-30', '2002-04-01', '2345 Moss Bay Blvd','Kirkland','WA','10007', 'USA', '(206) 555-0103', 2);
 
--- Supplier (3 rows)
-INSERT INTO Supplier(supplierid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(1, N'Supplier SWRXU', N'Adolphi, Stephan', N'Purchasing Manager', N'2345 Gilbert St.', N'London', NULL, N'10023', N'UK', N'(171) 456-7890', NULL);
-INSERT INTO Supplier(supplierid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(2, N'Supplier VHQZD', N'Hance, Jim', N'Order Administrator', N'P.O. Box 5678', N'New Orleans', N'LA', N'10013', N'USA', N'(100) 555-0111', NULL);
-INSERT INTO Supplier(supplierid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(3, N'Supplier STUAZ', N'Parovszky, Alfons', N'Sales Representative', N'1234 Oxford Rd.', N'Ann Arbor', N'MI', N'10026', N'USA', N'(313) 555-0109', N'(313) 555-0112');
+-- 2. Supplier (3 rows)
+INSERT INTO Supplier (supplierId, companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax)
+VALUES
+  (1, 'Supplier SWRXU', 'Adolphi, Stephan',   'Purchasing Manager',   '2345 Gilbert St.',       'London',      NULL,       '10023', 'UK',  '(171) 456-7890', NULL),
+  (2, 'Supplier VHQZD', 'Hance, Jim',         'Order Administrator',  'P.O. Box 5678',          'New Orleans', 'LA',       '10013', 'USA', '(100) 555-0111', NULL),
+  (3, 'Supplier STUAZ', 'Parovszky, Alfons',  'Sales Representative', '1234 Oxford Rd.',        'Ann Arbor',   'MI',       '10026', 'USA', '(313) 555-0109', '(313) 555-0112');
 
--- Category (8 rows)
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(1, N'Beverages', N'Soft drinks, coffees, teas, beers, and ales');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(2, N'Condiments', N'Sweet and savory sauces, relishes, spreads, and seasonings');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(3, N'Confections', N'Desserts, candies, and sweet breads');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(4, N'Dairy Products', N'Cheeses');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(5, N'Grains/Cereals', N'Breads, crackers, pasta, and cereal');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(6, N'Meat/Poultry', N'Prepared meats');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(7, N'Produce', N'Dried fruit and bean curd');
-INSERT INTO Category(categoryid, categoryname, description)
-  VALUES(8, N'Seafood', N'Seaweed and fish');
+-- 3. Category (8 rows)
+INSERT INTO Category (categoryId, categoryName, description)
+VALUES
+  (1, 'Beverages',      'Soft drinks, coffees, teas, beers, and ales'),
+  (2, 'Condiments',     'Sweet and savory sauces, relishes, spreads, and seasonings'),
+  (3, 'Confections',    'Desserts, candies, and sweet breads'),
+  (4, 'Dairy Products', 'Cheeses'),
+  (5, 'Grains/Cereals', 'Breads, crackers, pasta, and cereal'),
+  (6, 'Meat/Poultry',   'Prepared meats'),
+  (7, 'Produce',        'Dried fruit and bean curd'),
+  (8, 'Seafood',        'Seaweed and fish');
 
--- Product (5 rows)
-INSERT INTO Product(productid, productname, supplierid, categoryid, unitprice, discontinued)
-  VALUES(1, N'Product HHYDP', 1, 1, 18.00, 0);
-INSERT INTO Product(productid, productname, supplierid, categoryid, unitprice, discontinued)
-  VALUES(2, N'Product RECZE', 1, 1, 19.00, 0);
-INSERT INTO Product(productid, productname, supplierid, categoryid, unitprice, discontinued)
-  VALUES(3, N'Product IMEHJ', 1, 2, 10.00, 0);
-INSERT INTO Product(productid, productname, supplierid, categoryid, unitprice, discontinued)
-  VALUES(4, N'Product KSBRM', 2, 2, 22.00, 0);
-INSERT INTO Product(productid, productname, supplierid, categoryid, unitprice, discontinued)
-  VALUES(5, N'Product EPEIM', 2, 2, 21.35, 1);
+-- 4. Product (5 rows)
+INSERT INTO Product (productId, productName, supplierId, categoryId, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel, discontinued)
+VALUES
+  (1, 'Chai',               1, 1, '10 boxes x 20 bags',  18.00, 39, 0, 10, '0'),
+  (2, 'Chang',              1, 1, '24 - 12 oz bottles',  19.00, 17, 40, 25, '0'),
+  (3, 'Aniseed Syrup',      1, 2, '12 - 550 ml bottles', 10.00, 13, 70, 25, '0'),
+  (4, 'Chef Anton Cajun',   2, 2, '48 - 6 oz jars',      22.00, 53, 0,  0,  '0'),
+  (5, 'Tofu',               3, 7, '40 - 100 g pkgs.',    23.25, 35, 0,  0,  '0');
 
--- Customer (3 rows)
-INSERT INTO Customer(custid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(1, N'Customer NRZBB', N'Allen, Michael', N'Sales Representative', N'Obere Str. 0123', N'Berlin', NULL, N'10092', N'Germany', N'030-3456789', N'030-0123456');
-INSERT INTO Customer(custid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(2, N'Customer MLTDN', N'Hassall, Mark', N'Owner', N'Avda. de la ConstituciÃ³n 5678', N'MÃ©xico D.F.', NULL, N'10077', N'Mexico', N'(5) 789-0123', N'(5) 456-7890');
-INSERT INTO Customer(custid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax)
-  VALUES(3, N'Customer KBUDE', N'Peoples, John', N'Owner', N'Mataderos  7890', N'MÃ©xico D.F.', NULL, N'10097', N'Mexico', N'(5) 123-4567', NULL);
+-- 5. Customer (3 rows)
+INSERT INTO Customer (custId, companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax)
+VALUES
+  (1, 'Alfreds Futterkiste',  'Maria Anders',   'Sales Representative', 'Obere Str. 57',           'Berlin',      NULL, '12209', 'Germany', '030-0074321', '030-0076545'),
+  (2, 'Ana Trujillo Empared', 'Ana Trujillo',   'Owner',               'Avda. Constitucion 2222', 'Mexico D.F.', NULL, '05021', 'Mexico',  '(5) 555-4729', '(5) 555-3745'),
+  (3, 'Antonio Moreno Taq',   'Antonio Moreno', 'Owner',               'Mataderos 2312',          'Mexico D.F.', NULL, '05023', 'Mexico',  '(5) 555-3932', NULL);
 
--- Shipper (3 rows)
-INSERT INTO Shipper(shipperid, companyname, phone)
-  VALUES(1, N'Shipper GVSUA', N'(503) 555-0137');
-INSERT INTO Shipper(shipperid, companyname, phone)
-  VALUES(2, N'Shipper ETYNR', N'(425) 555-0136');
-INSERT INTO Shipper(shipperid, companyname, phone)
-  VALUES(3, N'Shipper ZHISN', N'(415) 555-0138');
+-- 6. Shipper (3 rows)
+INSERT INTO Shipper (shipperId, companyName, phone)
+VALUES
+  (1, 'Speedy Express',  '(503) 555-9831'),
+  (2, 'United Package',  '(503) 555-3199'),
+  (3, 'Federal Shipping','(503) 555-9931');
 
--- SalesOrder (5 rows)
-INSERT INTO SalesOrder(orderid, custid, employeeid, orderdate, requireddate, shippeddate, shipperid, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry)
-  VALUES(10248, 85, 5, '2006-07-04 00:00:00.000', '2006-08-01 00:00:00.000', '2006-07-16 00:00:00.000', 3, 32.38, N'Ship to 85-B', N'6789 rue de l''Abbaye', N'Reims', NULL, N'10345', N'France');
-INSERT INTO SalesOrder(orderid, custid, employeeid, orderdate, requireddate, shippeddate, shipperid, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry)
-  VALUES(10249, 79, 6, '2006-07-05 00:00:00.000', '2006-08-16 00:00:00.000', '2006-07-10 00:00:00.000', 1, 11.61, N'Ship to 79-C', N'Luisenstr. 9012', N'MÃ¼nster', NULL, N'10328', N'Germany');
-INSERT INTO SalesOrder(orderid, custid, employeeid, orderdate, requireddate, shippeddate, shipperid, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry)
-  VALUES(10250, 34, 4, '2006-07-08 00:00:00.000', '2006-08-05 00:00:00.000', '2006-07-12 00:00:00.000', 2, 65.83, N'Destination SCQXA', N'Rua do PaÃ§o, 7890', N'Rio de Janeiro', N'RJ', N'10195', N'Brazil');
-INSERT INTO SalesOrder(orderid, custid, employeeid, orderdate, requireddate, shippeddate, shipperid, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry)
-  VALUES(10251, 84, 3, '2006-07-08 00:00:00.000', '2006-08-05 00:00:00.000', '2006-07-15 00:00:00.000', 1, 41.34, N'Ship to 84-A', N'3456, rue du Commerce', N'Lyon', NULL, N'10342', N'France');
-INSERT INTO SalesOrder(orderid, custid, employeeid, orderdate, requireddate, shippeddate, shipperid, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry)
-  VALUES(10252, 76, 4, '2006-07-09 00:00:00.000', '2006-08-06 00:00:00.000', '2006-07-11 00:00:00.000', 2, 51.30, N'Ship to 76-B', N'Boulevard Tirou, 9012', N'Charleroi', NULL, N'10318', N'Belgium');
+-- 7. SalesOrder (5 rows)
+INSERT INTO SalesOrder (orderId, custId, employeeId, orderDate, requiredDate, shippedDate, shipperId, freight, shipName, shipAddress, shipCity, shipRegion, shipPostalCode, shipCountry, deliveryStatus)
+VALUES
+  (1, 1, 1, '2024-01-10', '2024-01-20', '2024-01-15', 1, 32.38, 'Alfreds Futterkiste', 'Obere Str. 57',           'Berlin',      NULL, '12209', 'Germany', 'DELIVERED'),
+  (2, 2, 2, '2024-02-05', '2024-02-15', '2024-02-10', 2, 11.61, 'Ana Trujillo',        'Avda. Constitucion 2222', 'Mexico D.F.', NULL, '05021', 'Mexico',  'SHIPPED'),
+  (3, 3, 3, '2024-03-01', '2024-03-11', NULL,         3, 65.83, 'Antonio Moreno',      'Mataderos 2312',          'Mexico D.F.', NULL, '05023', 'Mexico',  'PENDING'),
+  (4, 1, 2, '2024-03-15', '2024-03-25', NULL,         1, 41.34, 'Alfreds Futterkiste', 'Obere Str. 57',           'Berlin',      NULL, '12209', 'Germany', 'PENDING'),
+  (5, 2, 1, '2024-04-01', '2024-04-11', '2024-04-05', 2, 51.30, 'Ana Trujillo',        'Avda. Constitucion 2222', 'Mexico D.F.', NULL, '05021', 'Mexico',  'DELIVERED');
 
--- OrderDetail (10 rows)
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10248, 11, 14.00, 12, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10248, 42, 9.80, 10, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10248, 72, 34.80, 5, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10249, 14, 18.60, 9, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10249, 51, 42.40, 40, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10250, 41, 7.70, 10, 0);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10250, 51, 42.40, 35, 0.15);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10250, 65, 16.80, 15, 0.15);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10251, 22, 16.80, 6, 0.05);
-INSERT INTO OrderDetail(orderid, productid, unitprice, quantity, discount)
-  VALUES(10251, 57, 15.60, 15, 0.05);
+-- 8. OrderDetail (10 rows)
+INSERT INTO OrderDetail (orderId, productId, unitPrice, quantity, discount)
+VALUES
+  (1, 1, 18.00, 12, 0.00),
+  (1, 2, 19.00, 10, 0.00),
+  (2, 3, 10.00,  5, 0.00),
+  (2, 4, 22.00,  9, 0.05),
+  (3, 5, 23.25, 10, 0.00),
+  (3, 1, 18.00, 15, 0.10),
+  (4, 2, 19.00, 20, 0.00),
+  (4, 3, 10.00,  8, 0.00),
+  (5, 4, 22.00,  6, 0.05),
+  (5, 5, 23.25, 12, 0.10);
 
 SET FOREIGN_KEY_CHECKS=1;
