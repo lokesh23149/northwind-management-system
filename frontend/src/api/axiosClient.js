@@ -32,7 +32,7 @@ axiosClient.interceptors.response.use(
         }
       }
     } else if (error.request) {
-      errorMessage = 'Cannot connect to backend server. Make sure Spring Boot is running on port 8080.';
+      errorMessage = 'Cannot connect to backend server. Please verify the backend service is running and API URL is reachable.';
     }
 
     const enhancedError = new Error(errorMessage);
