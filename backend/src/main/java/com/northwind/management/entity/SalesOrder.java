@@ -137,7 +137,7 @@ public class SalesOrder {
     public void setShippedDate(LocalDateTime shippedDate) {
         this.shippedDate = shippedDate;
     }
-
+//updated
     public BigDecimal getFreight() {
         return freight;
     }
