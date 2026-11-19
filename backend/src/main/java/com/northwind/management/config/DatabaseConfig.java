@@ -22,11 +22,11 @@ public class DatabaseConfig {
     public DataSource dataSource(Environment env) {
         String mysqlUrl = env.getProperty("MYSQL_URL");
         String databaseUrl = env.getProperty("DATABASE_URL");
-        String host = env.getProperty("MYSQLHOST", "localhost");
-        String port = env.getProperty("MYSQLPORT", "3306");
-        String database = env.getProperty("MYSQLDATABASE", "Northwind");
-        String user = env.getProperty("MYSQLUSER", env.getProperty("spring.datasource.username", "root"));
-        String password = env.getProperty("MYSQLPASSWORD", env.getProperty("spring.datasource.password", "loki"));
+        String host = env.getProperty("MYSQLHOST", env.getProperty("MYSQL_HOST", "localhost"));
+        String port = env.getProperty("MYSQLPORT", env.getProperty("MYSQL_PORT", "3306"));
+        String database = env.getProperty("MYSQLDATABASE", env.getProperty("MYSQL_DATABASE", "Northwind"));
+        String user = env.getProperty("MYSQLUSER", env.getProperty("MYSQL_USER", env.getProperty("spring.datasource.username", "root")));
+        String password = env.getProperty("MYSQLPASSWORD", env.getProperty("MYSQL_PASSWORD", env.getProperty("MYSQL_ROOT_PASSWORD", env.getProperty("spring.datasource.password", "loki"))));
 
         String finalJdbcUrl;
         String finalUser = user;
