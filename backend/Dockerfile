@@ -19,9 +19,9 @@ WORKDIR /app
 RUN groupadd -r spring && useradd -r -g spring spring
 USER spring:spring
 
-COPY --from=build --chown=spring:spring /app/target/northwind-management-system-1.0.0.jar app.jar
+COPY --from=build --chown=spring:spring /app/target/*.jar app.jar
 
 ENV PORT=8080
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar", "--spring.profiles.active=prod"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -Djava.security.egd=file:/dev/./urandom -jar app.jar --spring.profiles.active=prod"]

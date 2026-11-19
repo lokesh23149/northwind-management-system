@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk17", "maven"]
+
+[phases.build]
+cmds = ["cd backend && chmod +x ./mvnw && ./mvnw clean package -DskipTests || cd backend && mvn clean package -DskipTests"]
+
+[start]
+cmd = "java -Dserver.port=$PORT -jar backend/target/northwind-management-system-1.0.0.jar --spring.profiles.active=prod"
