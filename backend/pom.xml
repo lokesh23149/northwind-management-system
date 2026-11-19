@@ -62,6 +62,12 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- Spring Boot Actuator (Railway healthcheck endpoint) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Spring Boot Test Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
