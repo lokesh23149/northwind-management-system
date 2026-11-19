@@ -1,0 +1,470 @@
+{
+  "info": {
+    "name": "Northwind Business Management System API",
+    "description": "Comprehensive Postman test collection for Northwind Business Management System (Java Spring Boot + MySQL)",
+    "_postman_id": "9b12481e-360b-4f9e-a89e-9d8a571f3020",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard", "stats"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Employee Management",
+      "item": [
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"]
+            }
+          }
+        },
+        {
+          "name": "Search Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees?search=sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"],
+              "query": [{"key": "search", "value": "sales"}]
+            }
+          }
+        },
+        {
+          "name": "Get Employee By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "1"]
+            }
+          }
+        },
+        {
+          "name": "Add Employee",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstname\": \"Alexander\",\n  \"lastname\": \"Hamilton\",\n  \"title\": \"Treasury Manager\",\n  \"titleOfCourtesy\": \"Mr.\",\n  \"birthDate\": \"1985-01-11T00:00:00\",\n  \"hireDate\": \"2024-01-15T00:00:00\",\n  \"address\": \"55 Wall Street\",\n  \"city\": \"New York\",\n  \"region\": \"NY\",\n  \"postalCode\": \"10005\",\n  \"country\": \"USA\",\n  \"phone\": \"(212) 555-0199\",\n  \"email\": \"alexander.hamilton@northwind.com\",\n  \"mgrId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"]
+            }
+          }
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstname\": \"Alexander\",\n  \"lastname\": \"Hamilton\",\n  \"title\": \"Senior Operations Director\",\n  \"phone\": \"(212) 555-0200\",\n  \"email\": \"alexander.hamilton@northwind.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Employee",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees/10",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "10"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Product Management",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Get Low Stock Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products?lowStock=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [{"key": "lowStock", "value": "true"}]
+            }
+          }
+        },
+        {
+          "name": "Filter Products by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products?categoryId=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [{"key": "categoryId", "value": "1"}]
+            }
+          }
+        },
+        {
+          "name": "Get Product By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "1"]
+            }
+          }
+        },
+        {
+          "name": "Add Product",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productName\": \"Organic Arabica Coffee\",\n  \"categoryId\": 1,\n  \"supplierId\": 1,\n  \"quantityPerUnit\": \"24 - 12 oz bags\",\n  \"unitPrice\": 24.50,\n  \"unitsInStock\": 150,\n  \"unitsOnOrder\": 0,\n  \"reorderLevel\": 25,\n  \"discontinued\": \"0\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Update Product Stock",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unitsInStock\": 200\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/1/stock",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "1", "stock"]
+            }
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/78",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "78"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Customer Management",
+      "item": [
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers"]
+            }
+          }
+        },
+        {
+          "name": "Search Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers?search=london",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers"],
+              "query": [{"key": "search", "value": "london"}]
+            }
+          }
+        },
+        {
+          "name": "Register Customer",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"Apex International Logistics\",\n  \"contactName\": \"Eleanor Vance\",\n  \"contactTitle\": \"Procurement Director\",\n  \"address\": \"100 Ocean View Blvd\",\n  \"city\": \"San Francisco\",\n  \"region\": \"CA\",\n  \"postalCode\": \"94102\",\n  \"country\": \"USA\",\n  \"phone\": \"(415) 555-8833\",\n  \"email\": \"eleanor.vance@apexlogistics.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers"]
+            }
+          }
+        },
+        {
+          "name": "Get Customer By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"Apex International Logistics Ltd.\",\n  \"contactName\": \"Eleanor Vance\",\n  \"contactTitle\": \"VP Procurement\",\n  \"phone\": \"(415) 555-9944\",\n  \"email\": \"evance@apexlogistics.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Purchase & Orders",
+      "item": [
+        {
+          "name": "Place Purchase Order (Multi-Product)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custId\": 1,\n  \"employeeId\": 1,\n  \"shipperId\": 1,\n  \"freight\": 15.50,\n  \"shipName\": \"Apex Headquarters\",\n  \"shipAddress\": \"100 Ocean View Blvd\",\n  \"shipCity\": \"San Francisco\",\n  \"shipCountry\": \"USA\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 5,\n      \"discount\": 0.05\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 3,\n      \"discount\": 0.0\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Place Order - Insufficient Stock (Error Test)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custId\": 1,\n  \"shipperId\": 1,\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 99999\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/10248",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "10248"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Order (Restores Stock)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/10248/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "10248", "cancel"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Delivery Management",
+      "item": [
+        {
+          "name": "Get All Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deliveries",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries"]
+            }
+          }
+        },
+        {
+          "name": "Get Pending Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deliveries?status=PENDING",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries"],
+              "query": [{"key": "status", "value": "PENDING"}]
+            }
+          }
+        },
+        {
+          "name": "Get Shipped Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deliveries?status=SHIPPED",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries"],
+              "query": [{"key": "status", "value": "SHIPPED"}]
+            }
+          }
+        },
+        {
+          "name": "Update Delivery Status to SHIPPED",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveryStatus\": \"SHIPPED\",\n  \"shippedDate\": \"2026-11-19T14:30:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/10248/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", "10248", "status"]
+            }
+          }
+        },
+        {
+          "name": "Update Delivery Status to DELIVERED",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveryStatus\": \"DELIVERED\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/10248/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", "10248", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference Data",
+      "item": [
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Shippers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shippers",
+              "host": ["{{baseUrl}}"],
+              "path": ["shippers"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
