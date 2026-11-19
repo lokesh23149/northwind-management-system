@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const isLocalhost = typeof window !== 'undefined' && 
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || (
+  isLocalhost
+    ? 'http://localhost:8080/api'
+    : 'https://northwind-management-system-production.up.railway.app/api'
+);
 
 const axiosClient = axios.create({
   baseURL: API_BASE_URL,
